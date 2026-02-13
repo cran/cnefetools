@@ -1,4 +1,4 @@
-b78f9bfad033e49bd28c2bac72acfc4d *DESCRIPTION
+8eea7805060cee0a9baafc10a6049e73 *DESCRIPTION
 a8795a974f5793efed61bddbcdd7587c *LICENSE
 db47aaba0196479a1f5c6a3e9e394174 *NAMESPACE
 320090b69f56df48f828c69e33af2913 *NEWS.md
@@ -44,5 +44,5 @@ bc13775808be941c0d85be967a3d6e11 *tests/testthat/helper-fixture.R
 80b136a66d24049cff23a7dcf9939021 *tests/testthat/test-cnefe_counts.R
 162b46ca1cf61dd7173b24c42b80386c *tests/testthat/test-compute_lumi.R
 ed6a96f915a2f26fb4cb0670a5489f44 *tests/testthat/test-read_cnefe.R
-23052174279c08073b498fc3b77b41eb *tests/testthat/test-test-tracts_to_h3.R
+cb40e021adfcf2a871beac27cf3f152b *tests/testthat/test-test-tracts_to_h3.R
 2cd75c00ff963b5a6d748aeec4a33cbe *tests/testthat/test-tracts_to_polygon.R

@@ -1,6 +1,6 @@
 Package: cnefetools
 Title: Access and Analysis of Brazilian CNEFE Address Data
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(
       person(given = "Jorge Ubirajara", family = "Pedreira Junior",
@@ -40,11 +40,11 @@ Imports: arrow, dplyr, sf, geobr, lifecycle, rlang, h3jsr, tidyr, DBI,
         piggyback
 LazyData: true
 NeedsCompilation: no
-Packaged: 2026-02-07 18:55:43 UTC; jorge
+Packaged: 2026-02-12 20:08:00 UTC; jorge
 Author: Jorge Ubirajara Pedreira Junior [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0002-8243-5395>),
   Bruno Mioto [aut],
   Kaio Cunha Pedreira [ctb]
 Maintainer: Jorge Ubirajara Pedreira Junior <jorge.ubirajara@ufba.br>
 Repository: CRAN
-Date/Publication: 2026-02-11 20:00:15 UTC
+Date/Publication: 2026-02-13 07:40:14 UTC
