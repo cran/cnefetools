@@ -1,7 +1,7 @@
-8eea7805060cee0a9baafc10a6049e73 *DESCRIPTION
+023d93637013aa8e9789fb903ae3fdbd *DESCRIPTION
 a8795a974f5793efed61bddbcdd7587c *LICENSE
 db47aaba0196479a1f5c6a3e9e394174 *NAMESPACE
-320090b69f56df48f828c69e33af2913 *NEWS.md
+acabd70ef0521a3bfe5acb0a984fe5a7 *NEWS.md
 31fd7ced6e31d089551f7f5551e92a7f *R/build_h3_grid.R
 c2b39308dc7337e5e5585592dedebdff *R/cnefe_counts.R
 f81b6e0c5d646b2846f413d76b1c1eb2 *R/cnefe_docs.R
@@ -13,7 +13,7 @@ d1bf8ad968c717fb77ec19f0536fad87 *R/data.R
 bf759abee9f94873cb270c786e8b1c3a *R/tracts_to_h3.R
 9fef38ef52cc43c28882454b2b6f07cd *R/tracts_to_polygon.R
 4c36fb31259a79c1ccfb4f98125af1dc *R/utils-internal.R
-708a501c0bc62ffcdce5f09828978718 *README.md
+9c8737fddb87244d8c31eed749f942bb *README.md
 8b2993a6e1562102bc61687b8cf4665c *data/tracts_variables_ref.rda
 d0b72a7c7a208cef7a2ea6c267928c55 *inst/extdata/cnefe_dictionary_2022.xls
 10d22ab9b38e4d79b757eb5aab351643 *inst/extdata/cnefe_fixture_cnefe.zip
