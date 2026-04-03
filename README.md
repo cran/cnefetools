@@ -9,7 +9,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/cnefetools)](https://CR
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 
 **{cnefetools}** provides helper functions to efficiently work with the
 Brazilian National Address File for Statistical Purposes (*Cadastro
@@ -47,6 +47,7 @@ remotes::install_github("pedreirajr/cnefetools")
 | `tracts_to_polygon()` | Dasymetric interpolation of census tract variables to user-provided polygons via CNEFE dwelling points |
 | `cnefe_doc()` | Opens the official CNEFE methodological note (PDF) |
 | `cnefe_dictionary()` | Opens the official CNEFE variable dictionary (Excel) |
+| `clear_cache_muni()`, `clear_cache_tracts()` | Delete cached CNEFE ZIP files or census tract Parquet files from the user cache directory |
 
 ## Reading CNEFE data
 
@@ -157,6 +158,7 @@ library(ggplot2)
 hex_sp <- cnefe_counts(
   code_muni = 3550308,
   h3_resolution = 9,
+  cache = TRUE,
   verbose = TRUE
   )
 ```
@@ -211,6 +213,7 @@ library(ggplot2)
 lumi_ftl <- compute_lumi(
   code_muni = 2304400,
   h3_resolution = 8,
+  cache = TRUE,
   verbose = TRUE
   )
 ```
@@ -344,6 +347,7 @@ rec_poly <- tracts_to_polygon(
   code_muni = 2611606,
   polygon = rec_nei,
   vars = c("pop_ph", "avg_inc_resp"),
+  cache = TRUE,
   verbose = F
 )
 ```
@@ -403,6 +407,35 @@ All extensions are installed and loaded automatically on first use. A
 pure-R fallback (`backend = "r"`) is also available, using `h3jsr` and
 `sf` for the same operations on `cnefe_counts()` and `compute_lumi()`
 functions (slower, but without the DuckDB dependency).
+
+## Managing the local cache
+
+While caching speeds up repeated analyses by avoiding redundant
+downloads, users may want to free up disk space or force a fresh
+download. **{cnefetools}** provides two dedicated functions for
+fine-grained control over the local cache, allowing you to remove cached
+files selectively or all at once.
+
+`clear_cache_muni()` deletes cached CNEFE ZIP files from the user cache
+directory. You can remove all cached files at once or target a specific
+municipality by its seven-digit IBGE code:
+
+``` r
+clear_cache_muni()          # delete all cached CNEFE ZIPs
+clear_cache_muni(2919207)   # delete only the ZIP for Lauro de Freitas-BA
+```
+
+`clear_cache_tracts()` removes cached census tract Parquet files. You
+can filter by state using a two-letter UF abbreviation, a two-digit
+numeric state code, or a seven-digit municipality code (resolved to its
+state automatically):
+
+``` r
+clear_cache_tracts()        # delete all cached census tract Parquets
+clear_cache_tracts("BA")    # delete only the Parquet for Bahia
+clear_cache_tracts(29)      # same, using the numeric state code
+clear_cache_tracts(2919207) # same, using a municipality code
+```
 
 ## Citation
 

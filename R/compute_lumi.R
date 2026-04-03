@@ -69,7 +69,7 @@
 #' @examples
 #' \donttest{
 #' # Compute land-use mix indices on H3 hexagons
-#' lumi <- compute_lumi(code_muni = 2929057)
+#' lumi <- compute_lumi(code_muni = 2929057, cache = FALSE)
 #'
 #' # Compute land-use mix indices on user-provided polygons (neighborhoods of Lauro de Freitas-BA)
 #' # Using geobr to download neighborhood boundaries
@@ -81,7 +81,8 @@
 #' lumi_poly <- compute_lumi(
 #'   code_muni = 2919207,
 #'   polygon_type = "user",
-#'   polygon = nei_ldf
+#'   polygon = nei_ldf,
+#'   cache = FALSE
 #' )
 #' }
 #'
@@ -791,6 +792,14 @@ compute_lumi <- function(
     data = polygon[, ".poly_row_id"],
     name = "user_polygons",
     overwrite = TRUE
+  )
+
+  # duckspatial 1.0.0 (DuckDB 1.5+) writes GEOMETRY with embedded CRS metadata,
+  # which RTREE does not accept. Strip CRS via WKB round-trip first.
+  DBI::dbExecute(
+    con,
+    "ALTER TABLE user_polygons ALTER COLUMN geom SET DATA TYPE GEOMETRY
+     USING ST_GeomFromWKB(ST_AsWKB(geom));"
   )
 
   # Spatial index on user polygons for faster joins

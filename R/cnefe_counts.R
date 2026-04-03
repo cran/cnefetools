@@ -52,7 +52,7 @@
 #' @examples
 #' \donttest{
 #' # Count addresses per H3 hexagon (resolution 9)
-#' hex_counts <- cnefe_counts(code_muni = 2929057)
+#' hex_counts <- cnefe_counts(code_muni = 2929057, cache = FALSE)
 #'
 #' # Count addresses per user-provided polygon (neighborhoods of Lauro de Freitas-BA)
 #' # Using geobr to download neighborhood boundaries
@@ -64,7 +64,8 @@
 #' hex_counts <- cnefe_counts(
 #'   code_muni = 2919207,
 #'   polygon_type = "user",
-#'   polygon = nei_ldf
+#'   polygon = nei_ldf,
+#'   cache = FALSE
 #' )
 #' }
 #'
@@ -657,6 +658,14 @@ g., 4674, 31983) or a CRS object."
       ),
       type = "output"
     )
+  )
+
+  # duckspatial 1.0.0 (DuckDB 1.5+) writes GEOMETRY with embedded CRS metadata
+  # (e.g. GEOMETRY('OGC:CRS84')), which DuckDB's RTREE index does not accept.
+  # A WKB round-trip strips the CRS parameter and yields plain GEOMETRY.
+  DBI::dbExecute(con,
+    "ALTER TABLE user_polygons ALTER COLUMN geom SET DATA TYPE GEOMETRY
+     USING ST_GeomFromWKB(ST_AsWKB(geom));"
   )
 
   # Spatial index on user polygons for faster joins
